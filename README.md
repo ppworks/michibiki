@@ -2,24 +2,32 @@
 
 ## sample code
 
-```Gemfile
+Gemfile
+
+```
 gem 'michibiki'
 ```
 
-```routes.rb
+config/routes.rb
+
+```
 Rails.application.routes.draw do
   resource :profile, only: %i(edit)
   mount Michibiki::Engine => "/michibiki"
 end
 ```
 
-```app/controllers/application_controller.rb
+app/controllers/application_controller.rb
+
+```
 class ApplicationController < ActionController::Base
   before_filter Michibiki::Strategies::ProfileEditing
 end
 ```
 
-```app/filters/michibiki/strategies/profile_editing.rb
+app/filters/michibiki/strategies/profile_editing.rb
+
+```
 class Michibiki::Strategies::ProfileEditing < Michibiki::Base
   private
   def trigger_conditions
@@ -33,7 +41,9 @@ class Michibiki::Strategies::ProfileEditing < Michibiki::Base
 end
 ```
 
-```app/views/profiles/edit.html.slim
+app/views/profiles/edit.html.slim
+
+```
 = form_for(@user) do |f|
   = f.text_field :nickname
   = f.submit

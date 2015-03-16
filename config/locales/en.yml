@@ -1,0 +1,4 @@
+en:
+  michibiki:
+    skip_failure:
+      invalid_strategy: Invalid strategy
